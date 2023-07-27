@@ -26,6 +26,8 @@ function getWeatherForcast(city) {
 
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityEncoded}&units=imperial&appid=${apiKey}`).then((response) => response.json()).then((weatherForecast) => {
 
+        if (weatherForecast.cod !== "200") return window.alert(`${weatherForecast.message}!`)
+
         $('#city-name').text(weatherForecast.city.name)
 
         for (var i = 0; i < weatherForecast.list.length; i += 8) {
@@ -52,8 +54,46 @@ function getWeatherForcast(city) {
 
 }
 
-getWeatherForcast("Round rock")
-
 function searchForWeather() {
-    getWeatherForcast("Round rock")
+    const city = $("#city-input").val()
+
+    let recents = JSON.parse(window.localStorage.getItem('recents'))
+
+    recents.push(city)
+
+    window.localStorage.setItem('recents', JSON.stringify(recents));
+
+    refreshRecents()
+    getWeatherForcast(city)
 }
+
+function refreshRecents() {
+    $("#recent-searches").empty()
+
+    let recents = JSON.parse(window.localStorage.getItem('recents')).slice(0, 6)
+
+    $("#recent-searches").append(`<li></li>`)
+    recents.forEach(recentCity => {
+        $("#recent-searches").append(`<li class="card list-group-item mx-3">${recentCity}</li>`)
+    })
+    $("#recent-searches").append(`<li hidden></li>`)
+}
+
+document.addEventListener('keypress', function(e) {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+    }
+});
+
+
+window.addEventListener("load", (event) => {
+    getWeatherForcast("Round rock")
+
+    const recents = window.localStorage.getItem('recents');
+
+    if (!recents || recents === "") {
+        window.localStorage.setItem('recents', '["Round Rock"]');
+    }
+
+    refreshRecents()
+});

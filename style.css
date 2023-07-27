@@ -1,7 +1,3 @@
-:root {
-
-}
-
 * {
 font-family: monospace;
 }
@@ -54,12 +50,16 @@ h1 {
     font-weight: bolder !important;
 }
 
-.list-group-flush {
+.list-group {
     margin: 0 auto !important; 
     display:flex;
     flex-direction: row !important;
     width: auto !important;
-    background-color: #fffbf6 !important;
+    background-color: transparent !important;
+}
+
+li {
+background-color: #fffbf6 !important;
 }
 
 .middle {

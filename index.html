@@ -13,8 +13,8 @@
         <div class="container-fluid">
             <a class="navbar-brand">Weather Forecast</a>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="City" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" id="city-input" type="search" placeholder="City" aria-label="Search">
+                <button class="btn btn-outline-success search-button" type="button" onclick="searchForWeather()">Search</button>
             </form>
         </div>
     </nav>
@@ -75,21 +75,13 @@
     </div>
 
     <h1>Search History</h1>
-    <div class="card middle" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">LongCityName</li>
-            <li class="list-group-item">LongCityName</li>
-            <li class="list-group-item">LongCityName</li>
-            <li class="list-group-item">LongCityName</li>
-            <li class="list-group-item">LongCityName</li>
-            <li class="list-group-item">LongCityName</li>
+    <div class="middle" style="width: 18rem;">
+        <ul class="list-group list-group-flush" id="recent-searches">
         </ul>
     </div>
-
-    <script src="./script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
-
+<script src="./script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </html>
 <!DOCTYPE html>
 <html lang="en">
