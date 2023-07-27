@@ -66,3 +66,12 @@ h1 {
     margin-left: 30px;
     display: inline;
 }
+
+img {
+    height: 100px;
+    object-fit: scale-down;
+}
+
+.city-name {
+    opacity: .5;
+}

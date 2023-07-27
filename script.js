@@ -25,23 +25,27 @@ function getWeatherForcast(city) {
     const cityEncoded = encodeURIComponent(city);
 
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityEncoded}&units=imperial&appid=${apiKey}`).then((response) => response.json()).then((weatherForecast) => {
+
+        $('#city-name').text(weatherForecast.city.name)
+
         for (var i = 0; i < weatherForecast.list.length; i += 8) {
             const weatherData = weatherForecast.list[i]
-            console.log(weatherData)
+
             const filteredData = {
                 "date": weatherData.dt,
                 "temperature": weatherData.main.temp,
                 "humidity": weatherData.main.humidity,
                 "windSpeed": weatherData.wind.speed,
-                "weatherIcon": `https://openweathermap.org/img/wn/${weatherData.dt}@2x.png`
+                "weatherIcon": `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`
             }
 
             const dayNumber = (i / 8) + 1
 
             $(`#d${dayNumber}-date`).text(formatDate(filteredData.date))
-            $(`#d${dayNumber}-humidity`).text(`Humidity: ${filteredData.humidity}`)
-            $(`#d${dayNumber}-temp`).text(`Temperature: ${filteredData.temperature}`)
-            $(`#d${dayNumber}-wind`).text(`Wind Speed: ${filteredData.windSpeed}`)
+            $(`#d${dayNumber}-humidity`).text(`Humidity: ${filteredData.humidity}%`)
+            $(`#d${dayNumber}-temp`).text(`Temperature: ${filteredData.temperature}°F`)
+            $(`#d${dayNumber}-wind`).text(`Wind Speed: ${filteredData.windSpeed} MPH`)
+            $(`#d${dayNumber}-icon`).attr("src", filteredData.weatherIcon)
         }
     })
 
@@ -49,3 +53,7 @@ function getWeatherForcast(city) {
 }
 
 getWeatherForcast("Round rock")
+
+function searchForWeather() {
+    getWeatherForcast("Round rock")
+}
