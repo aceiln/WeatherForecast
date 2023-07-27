@@ -1,1 +1,2 @@
-# WeatherForecast
+A webpage that actively uses a weatherAPI to pull information about the average weather throughout a day for the next five days. It features a navbar with a searchbar that stores your search history under the days (up to six). The week of weather for the respective city features the date and day, temperature, wind, and humidity. Upon entering a new city in the search bar, the city name and the weather and icons will change accordingly.
+<img width="958" alt="image" src="https://github.com/aceiln/WeatherForecast/assets/135187434/38bb539d-d237-4655-92a0-af7898ca42b0">
